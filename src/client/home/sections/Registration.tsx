@@ -1,5 +1,6 @@
 // src/client/home/sections/Registration.tsx
 
+import LeadCheckoutModal from '@/client/components/LeadCheckoutModal'
 import Link from "next/link";
 import {
   ArrowRight,
@@ -92,14 +93,11 @@ export default function Registration() {
                 por participante
               </p>
 
-              <Link
-                href="#"
-                className="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] px-4 py-6 font-bold uppercase tracking-wide text-[var(--color-bg-primary)] transition hover:bg-[var(--color-accent-hover)]"
-              >
-                Quero garantir minha vaga
-
-                <ArrowRight className="h-5 w-5" />
-              </Link>
+      <LeadCheckoutModal
+        checkoutUrl={"https://pay.cakto.com.br/37q9h54_971149"}
+        buttonText="Quero garantir minha vaga"
+        buttonClassName="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] px-8 py-5 font-bold uppercase tracking-wide text-[var(--color-bg-primary)] transition hover:bg-[var(--color-accent-hover)]"
+      />
 
               <div className="mt-8 flex items-center justify-center gap-3 text-sm text-[var(--color-text-tertiary)]">
                 <ShieldCheck className="h-5 w-5 text-[var(--color-accent)]" />
@@ -110,6 +108,7 @@ export default function Registration() {
           </div>
         </div>
       </div>
+
     </section>
   );
 }

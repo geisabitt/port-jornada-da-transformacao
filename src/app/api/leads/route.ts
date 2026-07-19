@@ -14,7 +14,15 @@ type LeadRequest = {
   utmTerm?: string
 }
 
-function sanitizeText(value: unknown, maxLength: number) {
+type GoogleScriptResponse = {
+  success?: boolean
+  message?: string
+}
+
+function sanitizeText(
+  value: unknown,
+  maxLength: number,
+) {
   if (typeof value !== 'string') {
     return ''
   }
@@ -24,15 +32,21 @@ function sanitizeText(value: unknown, maxLength: number) {
 
 export async function POST(request: Request) {
   try {
-    const scriptUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL
-    const webhookToken = process.env.GOOGLE_SHEETS_WEBHOOK_TOKEN
+    const scriptUrl =
+      process.env.GOOGLE_SHEETS_WEBHOOK_URL
 
-    if (!scriptUrl || !webhookToken) {
-      console.error('Google Sheets webhook não configurado.')
+    const webhookToken =
+      process.env.GOOGLE_SHEETS_WEBHOOK_TOKEN ?? ''
+
+    if (!scriptUrl) {
+      console.error(
+        'GOOGLE_SHEETS_WEBHOOK_URL não configurada.',
+      )
 
       return NextResponse.json(
         {
-          message: 'O formulário está temporariamente indisponível.',
+          message:
+            'O formulário está temporariamente indisponível.',
         },
         {
           status: 500,
@@ -40,10 +54,27 @@ export async function POST(request: Request) {
       )
     }
 
-    const body = (await request.json()) as LeadRequest
+    let body: LeadRequest
+
+    try {
+      body = (await request.json()) as LeadRequest
+    } catch {
+      return NextResponse.json(
+        {
+          message: 'Os dados enviados são inválidos.',
+        },
+        {
+          status: 400,
+        },
+      )
+    }
 
     const name = sanitizeText(body.name, 120)
-    const whatsapp = sanitizeText(body.whatsapp, 20).replace(/\D/g, '')
+
+    const whatsapp = sanitizeText(
+      body.whatsapp,
+      20,
+    ).replace(/\D/g, '')
 
     if (name.length < 3) {
       return NextResponse.json(
@@ -56,10 +87,14 @@ export async function POST(request: Request) {
       )
     }
 
-    if (whatsapp.length < 10 || whatsapp.length > 11) {
+    if (
+      whatsapp.length < 10 ||
+      whatsapp.length > 11
+    ) {
       return NextResponse.json(
         {
-          message: 'Digite um WhatsApp válido com DDD.',
+          message:
+            'Digite um WhatsApp válido com DDD.',
         },
         {
           status: 400,
@@ -67,51 +102,164 @@ export async function POST(request: Request) {
       )
     }
 
-    const response = await fetch(scriptUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-      },
-      body: JSON.stringify({
-        token: webhookToken,
-        name,
-        whatsapp,
-        pageUrl: sanitizeText(body.pageUrl, 500),
-        referrer: sanitizeText(body.referrer, 500),
-        utmSource: sanitizeText(body.utmSource, 150),
-        utmMedium: sanitizeText(body.utmMedium, 150),
-        utmCampaign: sanitizeText(body.utmCampaign, 150),
-        utmContent: sanitizeText(body.utmContent, 150),
-        utmTerm: sanitizeText(body.utmTerm, 150),
-        submittedAt: new Date().toISOString(),
-      }),
-      cache: 'no-store',
-    })
+    const controller = new AbortController()
 
-    const result = await response.json().catch(() => null)
+    const timeout = setTimeout(() => {
+      controller.abort()
+    }, 15000)
 
-    if (!response.ok || !result?.success) {
-      console.error('Erro no Google Apps Script:', result)
+    try {
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
 
+        headers: {
+          'Content-Type':
+            'text/plain;charset=utf-8',
+        },
+
+        body: JSON.stringify({
+          token: webhookToken,
+          name,
+          whatsapp,
+
+          pageUrl: sanitizeText(
+            body.pageUrl,
+            500,
+          ),
+
+          referrer: sanitizeText(
+            body.referrer,
+            500,
+          ),
+
+          utmSource: sanitizeText(
+            body.utmSource,
+            150,
+          ),
+
+          utmMedium: sanitizeText(
+            body.utmMedium,
+            150,
+          ),
+
+          utmCampaign: sanitizeText(
+            body.utmCampaign,
+            150,
+          ),
+
+          utmContent: sanitizeText(
+            body.utmContent,
+            150,
+          ),
+
+          utmTerm: sanitizeText(
+            body.utmTerm,
+            150,
+          ),
+
+          submittedAt: new Date().toISOString(),
+        }),
+
+        cache: 'no-store',
+        redirect: 'follow',
+        signal: controller.signal,
+      })
+
+      const responseText = await response.text()
+
+      console.log(
+        'Google Apps Script status:',
+        response.status,
+      )
+
+      console.log(
+        'Google Apps Script resposta:',
+        responseText,
+      )
+
+      let result: GoogleScriptResponse | null =
+        null
+
+      try {
+        result = JSON.parse(
+          responseText,
+        ) as GoogleScriptResponse
+      } catch {
+        console.error(
+          'A resposta do Apps Script não é JSON:',
+          responseText,
+        )
+      }
+
+      if (!response.ok) {
+        return NextResponse.json(
+          {
+            message: `O Google Apps Script retornou o status ${response.status}.`,
+          },
+          {
+            status: 502,
+          },
+        )
+      }
+
+      if (!result) {
+        return NextResponse.json(
+          {
+            message:
+              'O Google Apps Script retornou uma resposta inválida.',
+          },
+          {
+            status: 502,
+          },
+        )
+      }
+
+      if (!result.success) {
+        return NextResponse.json(
+          {
+            message:
+              result.message ||
+              'Não foi possível registrar sua inscrição.',
+          },
+          {
+            status: 502,
+          },
+        )
+      }
+
+      return NextResponse.json({
+        success: true,
+      })
+    } finally {
+      clearTimeout(timeout)
+    }
+  } catch (error) {
+    console.error(
+      'Erro ao cadastrar lead:',
+      error,
+    )
+
+    if (
+      error instanceof Error &&
+      error.name === 'AbortError'
+    ) {
       return NextResponse.json(
         {
-          message: 'Não foi possível registrar sua inscrição.',
+          message:
+            'O Google Sheets demorou demais para responder.',
         },
         {
-          status: 502,
+          status: 504,
         },
       )
     }
 
-    return NextResponse.json({
-      success: true,
-    })
-  } catch (error) {
-    console.error('Erro ao cadastrar lead:', error)
-
     return NextResponse.json(
       {
-        message: 'Não foi possível continuar. Tente novamente.',
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Não foi possível continuar.',
       },
       {
         status: 500,

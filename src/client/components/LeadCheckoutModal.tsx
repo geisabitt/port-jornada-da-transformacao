@@ -163,7 +163,7 @@ export default function LeadCheckoutModal({
             }
           }}
         >
-          <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl">
+          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg-card)] shadow-2xl">
             <button
               type="button"
               onClick={closeModal}
@@ -174,25 +174,25 @@ export default function LeadCheckoutModal({
               <X className="h-5 w-5" />
             </button>
 
-            <div className="border-b border-[var(--color-border)] px-6 pb-7 pt-10 sm:px-8">
+            <div className="border-b border-[var(--color-border)] px-6 pb-5 pt-5 sm:px-4">
               <span className="text-sm font-semibold uppercase tracking-[.18em] text-[var(--color-accent)]">
                 Último passo
               </span>
 
               <h2
                 id="lead-modal-title"
-                className="mt-3 pr-10 text-3xl font-bold leading-tight text-[var(--color-text-light)]"
+                className="mt-3 pr-10 text-2xl font-bold leading-tight text-[var(--color-text-light)]"
               >
                 Para quem podemos reservar esta vaga?
               </h2>
 
-              <p className="mt-4 leading-7 text-[var(--color-text-tertiary)]">
+              <p className="text-sm mt-4 leading-7 text-[var(--color-text-tertiary)]">
                 Preencha seus dados para continuar para o checkout seguro da
                 Cacto.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 p-6 sm:p-8">
+            <form onSubmit={handleSubmit} className="space-y-4 p-4 sm:p-8">
               <div>
                 <label
                   htmlFor="lead-name"
