@@ -1,0 +1,278 @@
+/* src/app/globals.css */
+@import "tailwindcss";
+
+/* =====================================================
+   TAILWIND THEME
+   ===================================================== */
+
+@theme inline {
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =====================================================
+   ANIMAÇÕES
+   ===================================================== */
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes leave {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.animate-enter {
+  animation: enter 0.3s ease-out forwards;
+}
+
+.animate-leave {
+  animation: leave 0.3s ease-in forwards;
+}
+
+/* =====================================================
+   COMPONENTES PADRÃO (SEGUROS)
+   ===================================================== */
+
+.input {
+  @apply w-full rounded-2xl border px-4 py-3 text-sm outline-none;
+  border-color: var(--color-admin-border);
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+.input:focus {
+  @apply ring-2;
+  ring-color: var(--color-accent);
+}
+
+.card {
+  @apply rounded-3xl border p-6;
+  border-color: var(--color-admin-border);
+  background: var(--color-admin-bg);
+}
+
+.title {
+  @apply mb-4 text-lg font-semibold;
+}
+
+/* =====================================================
+   BOTÕES
+   ===================================================== */
+
+.btn-primary {
+  @apply rounded-3xl px-5 py-3 text-sm font-semibold transition;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+.btn-primary:hover {
+  background: var(--color-bg-hover);
+}
+
+.btn-success {
+  @apply rounded-3xl px-5 py-3 text-sm font-semibold transition;
+  background: var(--color-success);
+  color: var(--color-text-light);
+}
+
+.btn-success:hover {
+  background: color-mix(in srgb, var(--color-success) 88%, black);
+}
+
+.btn-secondary {
+  @apply rounded-2xl border px-3 py-2 text-xs font-semibold transition;
+  border-color: var(--color-admin-border);
+  background: var(--color-bg-tertiary);
+  color: var(--color-admin-text);
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg-hover);
+}
+
+.btn-accent {
+  @apply inline-block rounded px-8 py-4 transition;
+  background: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+.btn-accent:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-outline-accent {
+  @apply inline-block rounded border px-6 py-3 transition;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn-outline-accent:hover {
+  background: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+/* =====================================================
+   BOTÕES BRAND
+   ===================================================== */
+
+.btn-brand {
+  @apply inline-block rounded-3xl px-5 py-3 text-sm font-semibold transition;
+  background: var(--color-brand-primary);
+  color: var(--color-text-light);
+}
+
+.btn-brand:hover {
+  background: var(--color-brand-primary-hover);
+}
+
+.btn-outline-brand {
+  @apply inline-block rounded-3xl border px-5 py-3 text-sm font-semibold transition;
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+  background: transparent;
+}
+
+.btn-outline-brand:hover {
+  background: var(--color-brand-primary);
+  color: var(--color-text-light);
+}
+
+.btn-brand-secondary {
+  @apply inline-block rounded-3xl px-5 py-3 text-sm font-semibold transition;
+  background: var(--color-brand-secondary);
+  color: var(--color-text-light);
+}
+
+.btn-brand-secondary:hover {
+  background: var(--color-brand-secondary-hover);
+}
+
+/* =====================================================
+   SUPERFÍCIES BRAND
+   ===================================================== */
+
+.surface-brand {
+  background: var(--color-brand-surface);
+  color: var(--color-text-light);
+}
+
+.surface-brand-soft {
+  background: var(--color-brand-surface-soft);
+  color: var(--color-text-light);
+}
+
+.border-brand {
+  border-color: var(--color-brand-border);
+}
+
+.text-brand {
+  color: var(--color-brand-primary);
+}
+
+.text-brand-secondary {
+  color: var(--color-brand-secondary);
+}
+
+.bg-brand-primary {
+  background: var(--color-brand-primary);
+}
+
+.bg-brand-secondary {
+  background: var(--color-brand-secondary);
+}
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.card-category {
+  @apply block rounded-xl border p-6 transition;
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-bg-hover);
+}
+
+.card-category:hover {
+  border-color: var(--color-accent);
+}
+
+.card-blog {
+  @apply block overflow-hidden rounded-lg transition-shadow;
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-admin-border);
+}
+
+.card-blog:hover {
+  @apply shadow-lg;
+}
+
+.card-post {
+  @apply overflow-hidden rounded-3xl border transition;
+  background: var(--color-bg-card);
+  border-color: var(--color-border);
+}
+
+.card-post:hover {
+  @apply shadow-md;
+}
+
+/* =====================================================
+   TABELAS
+   ===================================================== */
+
+.table-container {
+  @apply overflow-hidden rounded-3xl shadow-sm;
+  border: 1px solid var(--color-admin-border);
+  background: var(--color-admin-bg);
+}
+
+.table-header {
+  background: var(--color-bg-tertiary);
+}
+
+.table-row:hover {
+  background: var(--color-bg-hover);
+}
+
+/* =====================================================
+   ALERTAS
+   ===================================================== */
+
+.alert-error {
+  @apply rounded-3xl p-8;
+  border: 1px solid var(--color-error);
+  background: color-mix(in srgb, var(--color-error) 18%, transparent);
+  color: var(--color-error);
+}
