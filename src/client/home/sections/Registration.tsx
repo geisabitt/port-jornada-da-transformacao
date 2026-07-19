@@ -1,9 +1,7 @@
 // src/client/home/sections/Registration.tsx
 
 import LeadCheckoutModal from '@/client/components/LeadCheckoutModal'
-import Link from "next/link";
 import {
-  ArrowRight,
   CheckCircle2,
   ShieldCheck,
   Ticket,
@@ -23,7 +21,7 @@ export default function Registration() {
   return (
     <section
       id="inscricao"
-      className="relative overflow-hidden bg-[var(--color-bg-primary)] py-20 lg:py-32"
+      className="relative overflow-hidden bg-[var(--color-bg-primary)] py-18"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mx-auto max-w-4xl text-center">
@@ -31,22 +29,17 @@ export default function Registration() {
             Garanta sua vaga
           </span>
 
-          <h2 className="mt-4 text-4xl font-bold leading-tight text-[var(--color-text-light)] lg:text-6xl">
+          <h2 className="mt-4 text-3xl font-bold leading-tight text-[var(--color-text-light)] lg:text-4xl">
             Sua transformação começa
             <span className="text-[var(--color-accent)]">
               {" "}com uma decisão.
             </span>
           </h2>
-
-          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[var(--color-text-tertiary)]">
-            As vagas são limitadas para garantir uma experiência de qualidade.
-            Faça sua inscrição agora e reserve seu lugar.
-          </p>
         </div>
 
-        <div className="mx-auto mt-16 max-w-5xl rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-8 lg:p-12">
+        <div className="mx-auto mt-16 max-w-5xl rounded-3xl border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 lg:p-8">
           <div className="grid items-center gap-14 lg:grid-cols-[1.2fr_.8fr]">
-            <div>
+            <div className="order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 rounded-full border border-[var(--color-accent)]/30 bg-[var(--color-bg-secondary)] px-4 py-2">
                 <Ticket className="h-5 w-5 text-[var(--color-accent)]" />
 
@@ -80,24 +73,24 @@ export default function Registration() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-[var(--color-accent)]/30 bg-[var(--color-bg-secondary)] p-8 text-center">
+            <div className="order-1 rounded-3xl border border-[var(--color-accent)]/30 bg-[var(--color-bg-secondary)] p-8 text-center lg:order-2">
               <p className="text-sm uppercase tracking-[.18em] text-[var(--color-accent)]">
                 Investimento
               </p>
 
-              <p className="mt-6 text-4xl lg:text-6xl font-extrabold text-[var(--color-text-light)]">
-                R$ 47,90 
+              <p className="mt-6 text-4xl font-extrabold text-[var(--color-text-light)] lg:text-6xl">
+                R$ 47,90
               </p>
 
               <p className="mt-3 text-[var(--color-text-tertiary)]">
                 por participante
               </p>
 
-      <LeadCheckoutModal
-        checkoutUrl={"https://pay.cakto.com.br/37q9h54_971149"}
-        buttonText="Quero garantir minha vaga"
-        buttonClassName="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] px-8 py-5 font-bold uppercase tracking-wide text-[var(--color-bg-primary)] transition hover:bg-[var(--color-accent-hover)]"
-      />
+              <LeadCheckoutModal
+                checkoutUrl="https://pay.cakto.com.br/37q9h54_971149"
+                buttonText="Quero garantir minha vaga"
+                buttonClassName="mt-10 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] px-4 py-6 font-bold uppercase tracking-wide text-[var(--color-bg-primary)] transition hover:bg-[var(--color-accent-hover)]"
+              />
 
               <div className="mt-8 flex items-center justify-center gap-3 text-sm text-[var(--color-text-tertiary)]">
                 <ShieldCheck className="h-5 w-5 text-[var(--color-accent)]" />
@@ -106,9 +99,13 @@ export default function Registration() {
               </div>
             </div>
           </div>
+
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[var(--color-text-tertiary)]">
+            As vagas são limitadas para garantir uma experiência de qualidade.
+            Faça sua inscrição agora e reserve seu lugar.
+          </p>
         </div>
       </div>
-
     </section>
   );
 }

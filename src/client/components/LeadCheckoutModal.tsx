@@ -144,7 +144,7 @@ export default function LeadCheckoutModal({
         onClick={() => setOpen(true)}
         className={
           buttonClassName ??
-          'inline-flex items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] px-8 py-5 font-bold uppercase tracking-wide text-[var(--color-bg-primary)] transition hover:bg-[var(--color-accent-hover)]'
+          'inline-flex items-center justify-center gap-3 rounded-xl bg-[var(--color-accent)] px-4 py-2 font-bold uppercase tracking-wide text-[var(--color-bg-primary)] transition hover:bg-[var(--color-accent-hover)]'
         }
       >
         {buttonText}

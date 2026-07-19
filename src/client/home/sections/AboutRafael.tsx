@@ -10,6 +10,7 @@ import {
   HeartHandshake,
   Users,
 } from "lucide-react";
+import GoldenWaves from "@/core/components/GoldenWaves";
 
 const highlights = [
   {
@@ -51,6 +52,7 @@ export default function AboutRafael() {
       id="rafael-ramos"
       className="relative overflow-hidden bg-[var(--color-bg-primary)] py-20 lg:py-32"
     >
+      <GoldenWaves position="bottom" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,var(--color-accent-light),transparent_35%)] opacity-10" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">

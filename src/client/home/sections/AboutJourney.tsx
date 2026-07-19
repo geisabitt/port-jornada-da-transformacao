@@ -124,7 +124,7 @@ export default function AboutJourney() {
               Metodologia
             </span>
 
-            <h3 className="mt-4 text-3xl font-bold text-[var(--color-text-light)] lg:text-5xl">
+            <h3 className="mt-4 text-2xl font-bold text-[var(--color-text-light)] lg:text-5xl">
               Uma metodologia prática baseada em comportamento humano.
             </h3>
 

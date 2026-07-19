@@ -11,6 +11,7 @@ import {
   Target,
   ArrowRight,
 } from "lucide-react";
+import GoldenWaves from "@/core/components/GoldenWaves";
 
 const benefits = [
   {
@@ -51,6 +52,7 @@ export default function Transformation() {
       id="transformacao"
       className="relative overflow-hidden bg-[var(--color-bg-primary)] py-20 lg:py-32"
     >
+      <GoldenWaves position="top" />
       <div
         aria-hidden="true"
         className="absolute inset-0"

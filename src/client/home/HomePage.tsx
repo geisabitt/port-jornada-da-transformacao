@@ -14,6 +14,7 @@ import Testimonials from "./sections/Testimonials";
 import EventDetails from "./sections/EventDetails";
 import Registration from "./sections/Registration";
 import FAQ from "./sections/FAQ";
+import GoldenWaves from "@/core/components/GoldenWaves";
 
 export default async function HomePage() {
   const categories = await prisma.blogCategory.findMany({

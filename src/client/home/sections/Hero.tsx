@@ -7,6 +7,7 @@ import {
   CalendarDays,
   MapPin,
 } from "lucide-react";
+import GoldenWaves from "@/core/components/GoldenWaves";
 
 export default function Hero() {
   return (
@@ -14,6 +15,7 @@ export default function Hero() {
       id="inicio"
       className="relative isolate min-h-screen overflow-hidden bg-[var(--color-bg-primary)]"
     >
+      <GoldenWaves position="bottom" />
       <div className="absolute inset-x-0 top-0 -z-30 h-[400px] md:inset-0 md:h-full">
         <Image
           src="/hero-rafael-ramos.png"
@@ -21,7 +23,7 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[80%_center] lg:object-center"
+          className="object-cover object-[80%_center] lg:object-right"
         />
       </div>
 
@@ -70,7 +72,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="mx-auto flex min-h-[calc(100svh-80px)] w-full max-w-7xl items-center px-5 pb-16 pt-8 sm:px-8 md:py-16 lg:px-12 lg:py-24">
+      <div className="z-10 mx-auto flex min-h-[calc(100svh-80px)] w-full max-w-7xl items-center px-5 pb-16 pt-8 sm:px-8 md:py-16 lg:px-12 lg:py-24">
         <div className="w-full max-w-3xl lg:py-10">
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <span

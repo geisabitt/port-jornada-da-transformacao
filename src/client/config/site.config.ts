@@ -19,7 +19,7 @@ export const siteConfig = {
   headerCta: "Garantir minha vaga",
 
   // Redes sociais
-  instagram: "@rafaelramos",
+  instagram: "@eurafaelramos",
   facebook: "",
   tiktok: "",
 
