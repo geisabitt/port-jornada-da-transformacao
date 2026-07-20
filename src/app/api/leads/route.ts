@@ -30,6 +30,16 @@ function sanitizeText(
   return value.trim().slice(0, maxLength)
 }
 
+function normalizeWhatsapp(value: unknown) {
+  let numbers = sanitizeText(value, 30).replace(/\D/g, '')
+
+  if (numbers.startsWith('55') && numbers.length > 11) {
+    numbers = numbers.slice(2)
+  }
+
+  return numbers
+}
+
 export async function POST(request: Request) {
   try {
     const scriptUrl =
@@ -71,10 +81,7 @@ export async function POST(request: Request) {
 
     const name = sanitizeText(body.name, 120)
 
-    const whatsapp = sanitizeText(
-      body.whatsapp,
-      20,
-    ).replace(/\D/g, '')
+    const whatsapp = normalizeWhatsapp(body.whatsapp)
 
     if (name.length < 3) {
       return NextResponse.json(

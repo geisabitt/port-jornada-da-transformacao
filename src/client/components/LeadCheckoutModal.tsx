@@ -10,8 +10,18 @@ type LeadCheckoutModalProps = {
   buttonClassName?: string
 }
 
+function normalizeWhatsapp(value: string) {
+  let numbers = value.replace(/\D/g, '')
+
+  if (numbers.startsWith('55') && numbers.length > 11) {
+    numbers = numbers.slice(2)
+  }
+
+  return numbers.slice(0, 11)
+}
+
 function formatWhatsapp(value: string) {
-  const numbers = value.replace(/\D/g, '').slice(0, 11)
+  const numbers = normalizeWhatsapp(value)
 
   if (numbers.length <= 2) {
     return numbers
@@ -74,7 +84,7 @@ export default function LeadCheckoutModal({
     setError('')
 
     const cleanName = name.trim()
-    const cleanWhatsapp = whatsapp.replace(/\D/g, '')
+    const cleanWhatsapp = normalizeWhatsapp(whatsapp)
 
     if (cleanName.length < 3) {
       setError('Digite seu nome completo.')
