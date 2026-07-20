@@ -94,7 +94,7 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="max-w-2xl pt-10 font-[Montserrat] text-[clamp(2.5rem,3vw,3.5rem)] font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-[var(--color-text-primary)]">
+          <h1 className="max-w-2xl pt-10 font-[Montserrat] text-[clamp(2rem,2vw,3rem)] lg:text-[clamp(2.5rem,3vw,3.5rem)]  font-extrabold uppercase leading-[0.95] tracking-[-0.04em] text-[var(--color-text-primary)]">
   Você sente que nasceu para{" "}
   <span
     className="bg-clip-text text-transparent"

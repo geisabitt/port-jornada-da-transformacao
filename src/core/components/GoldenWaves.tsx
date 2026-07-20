@@ -112,7 +112,6 @@ export default function GoldenWaves({
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="0.055 0.945"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 4px var(--color-accent)) drop-shadow(0 0 10px var(--color-accent)) drop-shadow(0 0 20px var(--color-accent))',
@@ -152,7 +151,6 @@ export default function GoldenWaves({
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="0.04 0.96"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 4px var(--color-accent)) drop-shadow(0 0 10px var(--color-accent))',
@@ -172,7 +170,6 @@ export default function GoldenWaves({
         <circle
           r="3"
           fill="var(--color-text-light)"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 4px var(--color-accent)) drop-shadow(0 0 10px var(--color-accent)) drop-shadow(0 0 18px var(--color-accent))',
@@ -199,7 +196,6 @@ export default function GoldenWaves({
         <circle
           r="1.8"
           fill="var(--color-accent)"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 4px var(--color-accent)) drop-shadow(0 0 9px var(--color-accent))',
@@ -227,7 +223,6 @@ export default function GoldenWaves({
         <circle
           r="2.4"
           fill="var(--color-text-light)"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 4px var(--color-accent)) drop-shadow(0 0 12px var(--color-accent))',
@@ -255,7 +250,6 @@ export default function GoldenWaves({
         <circle
           r="2"
           fill="var(--color-accent)"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 4px var(--color-accent)) drop-shadow(0 0 10px var(--color-accent))',
@@ -283,7 +277,6 @@ export default function GoldenWaves({
         <circle
           r="1.5"
           fill="var(--color-accent)"
-          className="motion-reduce:hidden"
           style={{
             filter:
               'drop-shadow(0 0 3px var(--color-accent)) drop-shadow(0 0 8px var(--color-accent))',
